@@ -10,6 +10,8 @@ use Spiral\RoadRunner\Http\PSR7WorkerInterface;
 use Spiral\RoadRunner\Worker;
 use Spiral\RoadRunner\WorkerInterface;
 
+use const PHP_SAPI;
+
 final class ConfigProvider
 {
     /**
@@ -17,6 +19,10 @@ final class ConfigProvider
      */
     public function __invoke(): array
     {
+        if (PHP_SAPI !== 'cli') {
+            return [];
+        }
+
         return [
             'dependencies' => $this->getDependencies(),
             'laminas-cli'  => [
