@@ -32,6 +32,8 @@ logs:
       level: debug # Everything written to worker stderr is logged
 ```
 
+A list of available configuration parameters can be found in the `spiral/roadrunner-binary` [repository](https://github.com/spiral/roadrunner-binary/blob/stable/.rr.yaml) on github. 
+
 ### Retrieve roadrunner binary
 
 To be able to run roadrunner, you need to fetch the roadrunner binary. Use the following command to do so for your environment:
