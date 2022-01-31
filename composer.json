@@ -22,7 +22,7 @@
         "lctrs/psalm-psr-container-plugin": "^1.7",
         "phpunit/phpunit": "^9.5",
         "psalm/plugin-phpunit": "^0.16.1",
-        "vimeo/psalm": "^4.15"
+        "vimeo/psalm": "dev-master"
     },
     "autoload": {
         "psr-4": {

@@ -16,5 +16,8 @@
     <file>test</file>
 
     <!-- Include all rules from the Laminas Coding Standard -->
-    <rule ref="LaminasCodingStandard"/>
+    <rule ref="LaminasCodingStandard">
+        <!-- Need to disable this rule due to the usage of native PHP 8.1 intersection types -->
+        <exclude name="WebimpressCodingStandard.Formatting.Reference.UnexpectedSpace"/>
+    </rule>
 </ruleset>
