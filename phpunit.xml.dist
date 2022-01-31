@@ -11,7 +11,7 @@
     </include>
   </coverage>
   <testsuites>
-    <testsuite name="Mezzio {component} Tests">
+    <testsuite name="Boesing httphandlerrunner-roadrunner Tests">
       <directory>./test</directory>
     </testsuite>
   </testsuites>
