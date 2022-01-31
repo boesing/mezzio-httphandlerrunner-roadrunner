@@ -2,7 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Mezzio\{component-namespace};
+namespace Boesing\HttpHandlerRunner\Roadrunner;
+
+use Laminas\HttpHandlerRunner\RequestHandlerRunner;
+use Laminas\HttpHandlerRunner\RequestHandlerRunnerInterface;
+use Spiral\RoadRunner\Http\PSR7WorkerInterface;
+use Spiral\RoadRunner\Worker;
+use Spiral\RoadRunner\WorkerInterface;
 
 final class ConfigProvider
 {
@@ -21,6 +27,15 @@ final class ConfigProvider
      */
     public function getDependencies(): array
     {
-        return [];
+        return [
+            'factories' => [
+                RequestHandlerRunnerInterface::class => RequestHandlerRunnerFactory::class,
+                WorkerInterface::class               => static fn (): WorkerInterface => Worker::create(),
+                PSR7WorkerInterface::class           => PSR7WorkerFactory::class,
+            ],
+            'aliases'   => [
+                RequestHandlerRunner::class => RequestHandlerRunnerInterface::class,
+            ],
+        ];
     }
 }

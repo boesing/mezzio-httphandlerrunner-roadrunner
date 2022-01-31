@@ -1,3 +1,3 @@
-# mezzio-{component}
+# mezzio-httphandlerrunner-roadrunner
 
 This component provides ...

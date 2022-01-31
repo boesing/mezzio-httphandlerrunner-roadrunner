@@ -1,22 +1,17 @@
-# mezzio-{component}
+# mezzio-httphandlerrunner-roadrunner
 
-[![Build Status](https://github.com/mezzio/mezzio-{component}/actions/workflows/continuous-integration.yml/badge.svg)](https://github.com/mezzio/mezzio-{component}/actions/workflows/continuous-integration.yml)
+[![Build Status](https://github.com/boesing/mezzio-httphandlerrunner-roadrunner/actions/workflows/continuous-integration.yml/badge.svg)](https://github.com/boesing/mezzio-httphandlerrunner-roadrunner/actions/workflows/continuous-integration.yml)
 
-This library provides …
+This library provides a TBD
 
 ## Installation
 
 Run the following to install this library:
 
 ```bash
-$ composer require mezzio/mezzio-{component}
+$ composer require boesing/mezzio-httphandlerrunner-roadrunner
 ```
-
-## Documentation
-
-Browse the documentation online at https://docs.mezzio.dev/mezzio-{component}/
 
 ## Support
 
-* [Issues](https://github.com/mezzio/mezzio-{component}/issues/)
-* [Forum](https://discourse.laminas.dev/)
+* [Issues](https://github.com/boesing/mezzio-httphandlerrunner-roadrunner/issues/)
