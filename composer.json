@@ -1,6 +1,6 @@
 {
     "name": "boesing/mezzio-httphandlerrunner-roadrunner",
-    "description": "",
+    "description": "Adds native HTTP handler runner for mezzio projects to work with spiral/roadrunner",
     "license": "BSD-3-Clause",
     "keywords": [
         "mezzio",
