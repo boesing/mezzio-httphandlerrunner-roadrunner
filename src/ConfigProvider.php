@@ -4,25 +4,19 @@ declare(strict_types=1);
 
 namespace Boesing\HttpHandlerRunner\Roadrunner;
 
-use Laminas\HttpHandlerRunner\RequestHandlerRunner;
+use Boesing\HttpHandlerRunner\Roadrunner\RequestHandlerRunner;
 use Laminas\HttpHandlerRunner\RequestHandlerRunnerInterface;
 use Spiral\RoadRunner\Http\PSR7WorkerInterface;
 use Spiral\RoadRunner\Worker;
 use Spiral\RoadRunner\WorkerInterface;
 
-use const PHP_SAPI;
-
 final class ConfigProvider
 {
     /**
-     * @return array<mixed>
+     * @return array{dependencies:array<string,mixed>}&array<string,mixed>
      */
     public function __invoke(): array
     {
-        if (PHP_SAPI !== 'cli') {
-            return [];
-        }
-
         return [
             'dependencies' => $this->getDependencies(),
             'laminas-cli'  => [
@@ -34,19 +28,19 @@ final class ConfigProvider
     }
 
     /**
-     * @return array<mixed>
+     * @return array<string,mixed>
      */
     public function getDependencies(): array
     {
         return [
             'factories' => [
-                RequestHandlerRunnerInterface::class => RequestHandlerRunnerFactory::class,
-                WorkerInterface::class               => static fn(): WorkerInterface => Worker::create(),
-                PSR7WorkerInterface::class           => PSR7WorkerFactory::class,
-                RunCommand::class                    => RunCommandFactory::class,
+                RequestHandlerRunner::class => RequestHandlerRunnerFactory::class,
+                WorkerInterface::class      => static fn(): WorkerInterface => Worker::create(),
+                PSR7WorkerInterface::class  => PSR7WorkerFactory::class,
+                RunCommand::class           => RunCommandFactory::class,
             ],
             'aliases'   => [
-                RequestHandlerRunner::class => RequestHandlerRunnerInterface::class,
+                RequestHandlerRunnerInterface::class => RequestHandlerRunner::class,
             ],
         ];
     }

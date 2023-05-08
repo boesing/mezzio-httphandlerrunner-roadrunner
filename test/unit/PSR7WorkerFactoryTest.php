@@ -10,6 +10,7 @@ use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ServerRequestFactoryInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Psr\Http\Message\UploadedFileFactoryInterface;
+use Spiral\RoadRunner\Http\PSR7Worker;
 use Spiral\RoadRunner\WorkerInterface;
 
 final class PSR7WorkerFactoryTest extends TestCase
@@ -28,19 +29,18 @@ final class PSR7WorkerFactoryTest extends TestCase
         $container
             ->expects(self::exactly(4))
             ->method('get')
-            ->withConsecutive(
-                [WorkerInterface::class],
-                [ServerRequestFactoryInterface::class],
-                [StreamFactoryInterface::class],
-                [UploadedFileFactoryInterface::class]
-            )
-            ->willReturnOnConsecutiveCalls(
-                $this->createMock(WorkerInterface::class),
-                $this->createMock(ServerRequestFactoryInterface::class),
-                $this->createMock(StreamFactoryInterface::class),
-                $this->createMock(UploadedFileFactoryInterface::class),
-            );
+            ->willReturnCallback(function (string $argument): mixed {
+                $mapping = [
+                    WorkerInterface::class               => $this->createMock(WorkerInterface::class),
+                    ServerRequestFactoryInterface::class => $this->createMock(ServerRequestFactoryInterface::class),
+                    StreamFactoryInterface::class        => $this->createMock(StreamFactoryInterface::class),
+                    UploadedFileFactoryInterface::class  => $this->createMock(UploadedFileFactoryInterface::class),
+                ];
 
-        ($this->factory)($container);
+                self::assertArrayHasKey($argument, $mapping);
+                return $mapping[$argument];
+            });
+
+        self::assertInstanceOf(PSR7Worker::class, ($this->factory)($container));
     }
 }

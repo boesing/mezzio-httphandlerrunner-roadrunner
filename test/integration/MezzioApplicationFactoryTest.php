@@ -39,7 +39,7 @@ final class MezzioApplicationFactoryTest extends TestCase
         self::assertArrayHasKey('dependencies', $config);
         self::assertIsArray($config['dependencies']);
         /**
-         * @psalm-suppress MixedArgumentTypeCoercion laminas-servicemanager contains a union array type which is
+         * @psalm-suppress InvalidArgument laminas-servicemanager contains a union array type which is
          *                                           not (yet) supported by psalm
          */
         $container = new ServiceManager($config['dependencies']);

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace BoesingTest\HttpHandlerRunner\Roadrunner;
 
 use Boesing\HttpHandlerRunner\Roadrunner\ConfigProvider;
-use Laminas\HttpHandlerRunner\RequestHandlerRunner;
+use Boesing\HttpHandlerRunner\Roadrunner\RequestHandlerRunner;
 use Laminas\HttpHandlerRunner\RequestHandlerRunnerInterface;
 use PHPUnit\Framework\TestCase;
 use Spiral\RoadRunner\Http\PSR7WorkerInterface;
@@ -23,27 +23,23 @@ class ConfigProviderTest extends TestCase
 
     public function testApplicationConfigurationWillContainOverriddenServices(): void
     {
-        $config = ($this->configProvider)();
-        self::assertArrayHasKey('dependencies', $config);
-        self::assertIsArray($config['dependencies']);
+        $config       = ($this->configProvider)();
         $dependencies = $config['dependencies'];
         self::assertArrayHasKey('factories', $dependencies);
         self::assertIsArray($dependencies['factories']);
         $factories = $dependencies['factories'];
-        self::assertArrayHasKey(RequestHandlerRunnerInterface::class, $factories);
+        self::assertArrayHasKey(RequestHandlerRunner::class, $factories);
 
         self::assertArrayHasKey('aliases', $dependencies);
         self::assertIsArray($dependencies['aliases']);
         $aliases = $dependencies['aliases'];
-        self::assertArrayHasKey(RequestHandlerRunner::class, $aliases);
-        self::assertEquals(RequestHandlerRunnerInterface::class, $aliases[RequestHandlerRunner::class]);
+        self::assertArrayHasKey(RequestHandlerRunnerInterface::class, $aliases);
+        self::assertEquals(RequestHandlerRunner::class, $aliases[RequestHandlerRunnerInterface::class]);
     }
 
     public function testApplicationConfigurationWillContainRoadrunnerFactories(): void
     {
-        $config = ($this->configProvider)();
-        self::assertArrayHasKey('dependencies', $config);
-        self::assertIsArray($config['dependencies']);
+        $config       = ($this->configProvider)();
         $dependencies = $config['dependencies'];
         self::assertArrayHasKey('factories', $dependencies);
         self::assertIsArray($dependencies['factories']);
